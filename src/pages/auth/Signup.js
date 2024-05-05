@@ -10,19 +10,20 @@ export default function Login () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
 
     const submitUser = async (e) => {
         e.preventDefault();
         console.log(auth.currentUser);
         await createUserWithEmailAndPassword(auth, email, password)
             .then(() => {
+                setError(null);
                 navigate('/login');
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorCode);
-                console.log(errorMessage);
+                setError(errorCode);
             })
         console.log(auth.currentUser);
     }
@@ -53,6 +54,10 @@ export default function Login () {
                         autoComplete="on"
                     />
                     <button>Signup</button>
+                    {error && 
+                    <div className='error'>
+                        {error}
+                    </div>}
                 </form>
             </div>
         </div>

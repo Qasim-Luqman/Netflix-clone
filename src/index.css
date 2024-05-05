@@ -81,6 +81,15 @@ button {
   min-width: 20em;
 }
 
+.error {
+  background-color: #fff;
+  color: var(--primary);
+  padding: 10px;
+  margin-top: 20px;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+}
+
 label input {
   margin-bottom: 20px;
 }
