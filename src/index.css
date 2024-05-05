@@ -1,0 +1,170 @@
+/* Global styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+:root {
+  --primary: #db0000;
+  --secondary: #000000;
+  --tertiary: #831010;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: "Poppins";
+  background: var(--secondary);
+  height: 100vh;
+}
+
+main {
+  height: 100vh;
+}
+
+* {
+  color: #fff;
+  margin: 0;
+}
+
+input {
+  color: #000000;
+}
+
+button {
+  border: 0;
+  padding: 8px;
+  border-radius: 4px;
+  color: white;
+  background: var(--primary);
+  cursor: pointer;
+}
+
+/* Signup Form */
+
+.signup-login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.signup-login-form label {
+  text-align: left;
+  display: block;
+}
+.signup-login-form h2 {
+  font-size: 5vh;
+  color: var(--primary);
+  margin-bottom: 30px;
+}
+.signup-login-form input {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+.signup-login-form button {
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.signup-login-form > form {
+  display: flex;
+  flex-direction: column;
+  min-width: 20em;
+}
+
+label input {
+  margin-bottom: 20px;
+}
+
+/* navbar */
+header nav {
+  display: flex;
+  gap: 16px;
+  justify-content: end;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+header nav h1 {
+  margin-right: auto;
+  border-bottom: 3px solid var(--primary);
+}
+header nav a{
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 4px;
+}
+header nav a:hover {
+  color: var(--primary);
+}
+header nav a.active {
+  background: var(--primary);
+}
+header nav a.active:hover {
+  color: #fff;
+}
+
+
+/* page content */
+main {
+  max-width: 1200px;
+  margin: 40px auto;
+}
+
+/* movies list */
+
+.movies {
+  margin-top: 50px;
+}
+
+.movies > a {
+  display: flex;
+  justify-content: end;
+  background: var(--tertiary);
+  padding: 20px;
+  border-radius: 4px;
+  margin: 20px 0;
+  text-decoration: none;
+}
+
+.movies .movie-name {
+  margin-right: auto;
+}
+
+.movies .movie-image {
+  margin-left: 50px;
+}
+
+.movies > a p {
+  margin: 20px;
+}
+
+.movies > a:hover p:nth-child(1) {
+  color: var(--primary);
+}
+
+.movies > a p:nth-last-child(1) {
+ font-size: 0.8em;
+ color: #bbb;
+}
+
+/* movie details */
+.movie-details {
+  background: var(--tertiary);
+  padding: 20px;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+.movie-details p, .movie-details .details {
+  /* Add spacing between paragraphs and the details div */
+  margin-top: 20px;
+}
