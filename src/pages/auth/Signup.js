@@ -21,9 +21,7 @@ export default function Login () {
                 navigate('/login');
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                setError(errorCode);
+                setError(error.code);
             })
         console.log(auth.currentUser);
     }

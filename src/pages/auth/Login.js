@@ -14,16 +14,12 @@ export default function Login () {
 
     const submitUser = async (e) => {
         e.preventDefault();
-        const login = await signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user)
+        await signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
                 navigate('/home');
             })
             .catch((error) => {
-                const errorCode = error.code;
-                setError(errorCode)
-                console.log(errorCode);
+                setError(error.code)
             });
         console.log(auth.currentUser);
     }
