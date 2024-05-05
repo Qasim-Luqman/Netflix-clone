@@ -1,4 +1,6 @@
-// // Importing firebase
+// // Importing firebase 
+// Ignoring warning below..
+// eslint-disable-next-line
 import { app } from "./config/firebase-config";
 
 import { RouterProvider } from "react-router-dom";
