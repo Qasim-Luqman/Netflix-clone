@@ -14,6 +14,7 @@ import Home from "../pages/Home";
 import Movies from "../pages/movies/Movies";
 import MoviesError from "../pages/movies/MoviesError";
 import MovieDetails from "../pages/movies/MoviesDetails";
+import FavMovies from "../pages/movies/FavMovies";
 import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 
@@ -42,6 +43,11 @@ export const Router = createBrowserRouter(
             path=":id"
             element={<MovieDetails />}
             // loader={MovieDetailsLoader}
+          />
+          
+          <Route
+            path="favourite"
+            element={<FavMovies />}
           />
         </Route>
       </Route>

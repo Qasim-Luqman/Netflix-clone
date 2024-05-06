@@ -13,6 +13,10 @@ const MovieDetails = ({ movie, fetchMovie }) => {
     fetchMovie(id);
   }, [fetchMovie, id]);
 
+  if (!movie) {
+    return <div>Loading...</div>
+  }
+
   const handleAddToFavorites = async (movie) => {
     const user = getAuth();
     try {
