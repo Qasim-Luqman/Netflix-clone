@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchMovies } from "../../state/actions";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../config/firebase-config";
 import { getAuth } from "firebase/auth";
 

@@ -1,6 +1,5 @@
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase-config";
-import reducer from "./reducer";
 
 export const FETCH_MOVIES_SUCCESS = "FETCH_MOVIES_SUCCESS";
 export const FETCH_MOVIE_SUCCESS = "FETCH_MOVIE_SUCCESS";

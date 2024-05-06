@@ -1,4 +1,3 @@
-// reducers.js
 import { FETCH_MOVIES_SUCCESS } from './actions';
 import { FETCH_MOVIE_SUCCESS } from './actions';
 
