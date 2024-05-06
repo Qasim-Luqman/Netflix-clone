@@ -1,13 +1,14 @@
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase-config";
+import reducer from "./reducer";
 
-export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
-export const FETCH_MOVIE_SUCCESS = 'FETCH_MOVIE_SUCCESS';
+export const FETCH_MOVIES_SUCCESS = "FETCH_MOVIES_SUCCESS";
+export const FETCH_MOVIE_SUCCESS = "FETCH_MOVIE_SUCCESS";
 
 export const fetchMovies = () => {
   return async (dispatch) => {
     try {
-      const colRef = collection(db, 'movies');
+      const colRef = collection(db, "movies");
       const dbMovies = [];
       const snapshot = await getDocs(colRef);
       snapshot.forEach((movie) => {
@@ -15,24 +16,24 @@ export const fetchMovies = () => {
       });
       dispatch({ type: FETCH_MOVIES_SUCCESS, payload: dbMovies });
     } catch (error) {
-      console.error('Error fetching movies:', error);
+      console.error("Error fetching movies:", error);
     }
   };
 };
 
 export const fetchMovie = (id) => {
-    return async (dispatch) => {
-      try {
-        const docRef = doc(db, 'movies', id);
-        const docSnapshot = await getDoc(docRef);
-        if (docSnapshot.exists()) {
-          const movieData = { ...docSnapshot.data(), id: docSnapshot.id };
-          dispatch({ type: FETCH_MOVIE_SUCCESS, payload: movieData });
-        } else {
-          throw new Error('Movie not found');
-        }
-      } catch (error) {
-        console.error('Error fetching movie:', error);
+  return async (dispatch, getState) => {
+    try {
+      const state = getState();
+      const movies = state.movies;
+      const movie = movies.find((movie) => movie.id === id);
+      if (movie) {
+        dispatch({ type: FETCH_MOVIE_SUCCESS, payload: movie });
+      } else {
+        throw new Error("Movie not found");
       }
-    };
+    } catch (error) {
+      console.error("Error fetching movie:", error);
+    }
+  };
 };
