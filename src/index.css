@@ -36,6 +36,7 @@ button {
   color: white;
   background: var(--primary);
   cursor: pointer;
+  max-height: 5vh;
 }
 
 /* Signup Form */
@@ -101,20 +102,23 @@ header nav {
   justify-content: end;
   max-width: 1200px;
   margin: 0 auto;
+  align-items: center;
 }
 header nav h1 {
   margin-right: auto;
+  font-size: 5vh;
   border-bottom: 3px solid var(--primary);
 }
 header nav a{
   text-decoration: none;
   padding: 6px;
   border-radius: 4px;
+  max-height: 3vh;
 }
-header nav a:hover {
+header nav a:hover{
   color: var(--primary);
 }
-header nav a.active {
+header nav a.active{
   background: var(--primary);
 }
 header nav a.active:hover {
