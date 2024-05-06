@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom"
+import { db } from "../../config/firebase-config";
 
 export default function MovieDetails () {
 

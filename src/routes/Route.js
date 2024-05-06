@@ -18,7 +18,7 @@ import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 
 // Importing Loader Functions
-import { MoviesLoader } from "../pages/movies/Movies";
+// import { MoviesLoader } from "../pages/movies/Movies";
 import { MovieDetailsLoader } from "../pages/movies/MoviesDetails";
 import { authenticatedLoader } from "../pages/auth/authenticator";
 
@@ -36,7 +36,7 @@ export const Router = createBrowserRouter(
           element={<MoviesLayout />}
           errorElement={<MoviesError />}
         >
-          <Route index element={<Movies />} loader={MoviesLoader} />
+          <Route index element={<Movies />} />
 
           <Route
             path=":id"

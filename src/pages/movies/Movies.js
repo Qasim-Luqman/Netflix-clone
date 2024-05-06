@@ -1,9 +1,31 @@
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { db } from "../../config/firebase-config";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 export default function Movies() {
 
-    const movies = useLoaderData();
+    // const movies = useLoaderData();
+    const [movies, setMovies] = useState([]);
+
+    const colRef = collection(db, 'movies');
+
+    // useCallback ..... useMemo.....
+
+    useEffect(() => {
+        let dbMovies = [];
+        getDocs(colRef)
+            .then((snapshot) => {
+                snapshot.docs.forEach((movie) => {
+                    dbMovies.push({ ...movie.data(), id: movie.id});
+                })
+                setMovies([...dbMovies]);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            })
+    }, [movies]);
 
     return (
         <div className="movies">
@@ -15,7 +37,7 @@ export default function Movies() {
                         <p>Release Date: {movie.release_date}</p>
                     </div>
                     <div className="movie-image">
-                        <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI%40._V1_.jpg&tbnid=VyYtlaOsYFK4TM&vet=12ahUKEwj33ai98vOFAxWYVKQEHTUuBxYQMygAegQIARBB..i&imgrefurl=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0111161%2F&docid=on9f6ny-GzmbEM&w=1200&h=1800&q=shawshank%20redemption%20official%20poster&client=safari&ved=2ahUKEwj33ai98vOFAxWYVKQEHTUuBxYQMygAegQIARBB" alt="" height={150} width={150}/>
+                        <img alt="" height={150} width={150}/>
                     </div>
                 </Link>
             ))}
@@ -24,12 +46,12 @@ export default function Movies() {
 }
 
 // Loader Function to fetch data
-export const MoviesLoader = async () => {
-    const res = await fetch('http://localhost:4000/movies');
+// export const MoviesLoader = async () => {
+//     const res = await fetch('http://localhost:4000/movies');
 
-    if(!res.ok) {
-        throw Error('Could not Fetch Movies Data');
-    }
+//     if(!res.ok) {
+//         throw Error('Could not Fetch Movies Data');
+//     }
 
-    return res.json();
-}
+//     return res.json();
+// }

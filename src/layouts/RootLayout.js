@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 
 const auth = getAuth();
 
@@ -9,16 +9,6 @@ export default function RootLayout() {
 
     const logout = async () => {
         try {
-            // onAuthStateChanged(auth, async (user) => {
-            //     if(user){
-            //         await signOut(auth);
-            //         console.log('User was logged in');
-            //         navigate('/login');
-            //     }else{
-            //         console.log('User session expired');
-            //         navigate('/login');
-            //     }
-            // })
             await signOut(auth);
             navigate('/login');
         }catch(err) {
