@@ -1,57 +1,37 @@
-// import { useLoaderData } from "react-router-dom";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { db } from "../../config/firebase-config";
-import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { fetchMovies } from "../../state/actions";
 
-export default function Movies() {
+const Movies = ({ movies, fetchMovies }) => {
+  useEffect(() => {
+    fetchMovies();
+  }, [fetchMovies]);
 
-    // const movies = useLoaderData();
-    const [movies, setMovies] = useState([]);
+  return (
+    <div className="movies">
+      {movies.map((movie) => (
+        <Link to={movie.id.toString()} key={movie.id}>
+          <div className="movie-name">
+            <p>{movie.name}</p>
+            <p>Based in {movie.description}</p>
+            <p>Release Date: {movie.release_date}</p>
+          </div>
+          <div className="movie-image">
+            <img src={`${movie.poster_link}`} alt="" height={200} width={150} />
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
+};
 
-    const colRef = collection(db, 'movies');
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+});
 
-    // useCallback ..... useMemo.....
+const mapDispatchToProps = {
+  fetchMovies,
+};
 
-    useEffect(() => {
-        let dbMovies = [];
-        getDocs(colRef)
-            .then((snapshot) => {
-                snapshot.docs.forEach((movie) => {
-                    dbMovies.push({ ...movie.data(), id: movie.id});
-                })
-                setMovies([...dbMovies]);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            })
-    }, [movies]);
-
-    return (
-        <div className="movies">
-            {movies.map(movie => (
-                <Link to={movie.id.toString()} key={movie.id}>
-                    <div className="movie-name">
-                        <p>{movie.name}</p>
-                        <p>Based in {movie.description}</p>
-                        <p>Release Date: {movie.release_date}</p>
-                    </div>
-                    <div className="movie-image">
-                        <img alt="" height={150} width={150}/>
-                    </div>
-                </Link>
-            ))}
-        </div>
-    )
-}
-
-// Loader Function to fetch data
-// export const MoviesLoader = async () => {
-//     const res = await fetch('http://localhost:4000/movies');
-
-//     if(!res.ok) {
-//         throw Error('Could not Fetch Movies Data');
-//     }
-
-//     return res.json();
-// }
+export default connect(mapStateToProps, mapDispatchToProps)(Movies);

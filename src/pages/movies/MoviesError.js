@@ -9,7 +9,7 @@ export default function MoviesError() {
             <h2>Error!</h2>
             <p>OOPS! Cannot Fetch Movie Data</p>
             <p>Error Message: {error.message}</p>
-            <Link to='/'>
+            <Link to='/home'>
                 <button>Back to the Homepage</button>
             </Link>
         </div>

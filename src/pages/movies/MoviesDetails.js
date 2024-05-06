@@ -1,30 +1,47 @@
-import { useLoaderData } from "react-router-dom"
-import { db } from "../../config/firebase-config";
+import { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { fetchMovie } from "../../state/actions";
+import { useParams } from "react-router-dom";
 
-export default function MovieDetails () {
+const MovieDetails = ({ movie, fetchMovie }) => {
+  const { id } = useParams();
+  const [ isPending, setIsPending ] = useState(false);
 
-    const movie = useLoaderData();
+  useEffect(() => {
+    // setIsPending(true);
+    fetchMovie(id);
+    setIsPending(false);
+  }, [fetchMovie, id]);
 
-    return (
+  if (!movie) {
+    return <div>Loading...</div>
+  }
+
+  return (
+    <div>
+      <div className="movie-details">
+        {isPending && <div>Loading...</div>}
+        {!isPending && 
         <div>
-            <div className="movie-details">
-                <h2><strong>Movie: </strong>{movie.name}</h2>
-                <p><strong>Release Date: </strong>{movie.release_date}</p>
-                <p><strong>Genre: </strong>{movie.genre.join(', ')}</p>
-                <div className="details">
-                    <strong>Details: </strong> {movie.description}
-                </div>
-            </div>
+        <h2><strong>Movie: </strong>{movie.name}</h2>
+        <p><strong>Release Date: </strong>{movie.release_date}</p>
+        <p><strong>Genre: </strong>{movie.genre.join(', ')}</p>
+        <div className="details">
+          <strong>Details: </strong> {movie.description}
         </div>
-    )
-}
+        </div>
+    }   
+      </div>
+    </div>
+  );
+};
 
-//Movie details loader function
-export const MovieDetailsLoader = async ({ params }) => {
-    const { id } = params;
-    const res = await fetch(`http://localhost:4000/movies/` + id);
-    if(!res.ok) {
-        throw Error('Could not find the Movie');
-    }
-    return res.json();
-}
+const mapStateToProps = (state) => ({
+  movie: state.movie,
+});
+
+const mapDispatchToProps = {
+  fetchMovie,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);
