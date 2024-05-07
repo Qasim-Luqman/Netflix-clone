@@ -21,7 +21,6 @@ export default function Login () {
             .catch((error) => {
                 setError(error.code)
             });
-        console.log(auth.currentUser);
     }
 
     return (

@@ -3,7 +3,7 @@ import { FETCH_MOVIE_SUCCESS } from './actions';
 import { FETCH_FAVMOVIE_SUCCESS } from './actions';
 
 const initialState = {
-  movies: [],
+  movies: null,
   movie: null,
   favourite: []
 };

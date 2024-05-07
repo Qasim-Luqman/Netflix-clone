@@ -8,6 +8,12 @@ const Movies = ({ movies, fetchMovies }) => {
     fetchMovies();
   }, [fetchMovies]);
 
+  if(!movies) {
+    return (
+      <div className="loading">Loading...</div>
+    )
+  }
+
   return (
     <div className="movies">
       {movies.map((movie) => (

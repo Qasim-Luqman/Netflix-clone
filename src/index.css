@@ -199,3 +199,22 @@ main {
   /* Add spacing between paragraphs and the details div */
   margin-top: 20px;
 }
+
+/* Loading animation */
+
+@keyframes flash {
+  0% {
+    color: var(--secondary);
+  }
+  50% {
+    color: var(--primary);
+  }
+  100% {
+    color: var(--secondary);
+  }
+}
+
+.loading {
+  animation: flash 1s infinite;
+}
+
