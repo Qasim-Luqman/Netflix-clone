@@ -1,4 +1,4 @@
-import { FETCH_MOVIES_SUCCESS } from './actions';
+import { ADD_FAVMOVIE_SUCCESS, FETCH_MOVIES_SUCCESS } from './actions';
 import { FETCH_MOVIE_SUCCESS } from './actions';
 import { FETCH_FAVMOVIE_SUCCESS } from './actions';
 
@@ -25,6 +25,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         favourite: action.payload,
     };  
+    case ADD_FAVMOVIE_SUCCESS:
+      return {
+        ...state,
+        favoriteMovies: [...state.favourite, action.payload],
+      };
     default:
       return state;
   }
