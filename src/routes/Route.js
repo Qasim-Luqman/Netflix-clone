@@ -19,8 +19,6 @@ import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 
 // Importing Loader Functions
-// import { MoviesLoader } from "../pages/movies/Movies";
-// import { MovieDetailsLoader } from "../pages/movies/MoviesDetails";
 import { authenticatedLoader } from "../pages/auth/authenticator";
 
 export const Router = createBrowserRouter(
@@ -42,7 +40,6 @@ export const Router = createBrowserRouter(
           <Route
             path=":id"
             element={<MovieDetails />}
-            // loader={MovieDetailsLoader}
           />
           
           <Route
